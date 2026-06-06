@@ -1,0 +1,18 @@
+{
+  "name": "JorisHoef.ObjectSelection.CoreState.Samples.CoreStateBridgeSample",
+  "rootNamespace": "JorisHoef.ObjectSelection.CoreState.Samples",
+  "references": [
+    "JorisHoef.ObjectSelection.CoreState",
+    "JorisHoef.ObjectSelection",
+    "JorisHoef.Core.State"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

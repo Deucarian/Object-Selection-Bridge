@@ -1,0 +1,28 @@
+{
+  "name": "com.jorishoef.objectselection-corestate-bridge",
+  "version": "1.0.0",
+  "displayName": "JorisHoef ObjectSelection CoreState Bridge",
+  "description": "Bridge package that synchronizes JorisHoef Object Selection and JorisHoef Core State selections by shared key.",
+  "unity": "2021.3",
+  "author": {
+    "name": "JorisHoef"
+  },
+  "keywords": [
+    "selection",
+    "object",
+    "state",
+    "bridge",
+    "corestate"
+  ],
+  "dependencies": {
+    "com.jorishoef.object-selection": "1.0.0",
+    "com.jorishoef.core.state": "1.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Core State Bridge Sample",
+      "description": "Primitive scene showing world-object selection synchronized with Core State selection and back again.",
+      "path": "Samples~/CoreStateBridgeSample"
+    }
+  ]
+}

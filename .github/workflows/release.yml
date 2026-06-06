@@ -1,0 +1,38 @@
+name: Release Package Zip
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate package structure
+        shell: pwsh
+        run: ./Tools/Validate-Package.ps1
+
+      - name: Create release zip
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $zip = "objectselection-corestate-bridge-$tag.zip"
+          $exclude = @(".git", "Library", "Temp", "Obj", "Build", "Builds", "Logs")
+          $items = Get-ChildItem -Force | Where-Object { $exclude -notcontains $_.Name }
+          Compress-Archive -Path $items.FullName -DestinationPath $zip -Force
+          "ZIP_PATH=$zip" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Publish GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" $env:ZIP_PATH --title "${{ github.ref_name }}" --notes "ObjectSelection CoreState Bridge package release ${{ github.ref_name }}"

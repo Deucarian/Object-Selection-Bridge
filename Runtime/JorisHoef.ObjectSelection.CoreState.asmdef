@@ -1,0 +1,17 @@
+{
+  "name": "JorisHoef.ObjectSelection.CoreState",
+  "rootNamespace": "JorisHoef.ObjectSelection.CoreState",
+  "references": [
+    "JorisHoef.ObjectSelection",
+    "JorisHoef.Core.State"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

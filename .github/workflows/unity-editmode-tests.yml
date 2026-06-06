@@ -1,0 +1,49 @@
+name: Unity EditMode Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  editmode:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create package test project manifest
+        shell: bash
+        run: |
+          mkdir -p ObjectSelectionCoreStateBridge-TestProject/Packages ObjectSelectionCoreStateBridge-TestProject/Assets
+          package_path="${GITHUB_WORKSPACE}"
+          cat > ObjectSelectionCoreStateBridge-TestProject/Packages/manifest.json <<JSON
+          {
+            "dependencies": {
+              "com.jorishoef.object-selection": "https://github.com/JorisHoef/Object-Selection.git#main",
+              "com.jorishoef.core.state": "https://github.com/JorisHoef/Core-State.git#main",
+              "com.jorishoef.objectselection-corestate-bridge": "file:${package_path}",
+              "com.unity.test-framework": "1.1.33"
+            },
+            "testables": [
+              "com.jorishoef.objectselection-corestate-bridge"
+            ]
+          }
+          JSON
+
+      - name: Run EditMode tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ObjectSelectionCoreStateBridge-TestProject
+          unityVersion: 2021.3.45f1
+          testMode: editmode
+
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unity-editmode-test-results
+          path: artifacts
