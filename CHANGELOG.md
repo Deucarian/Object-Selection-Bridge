@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3 - 2026-06-22
+
+- Updated exact Core State, Object Selection, and Logging dependencies for the accepted stable release line.
+
 ## 1.0.2 - 2026-06-17
 
 - Renamed the package identity from `com.deucarian.object-selection.core-state-bridge` to `com.deucarian.object-selection.core-state-integration`.

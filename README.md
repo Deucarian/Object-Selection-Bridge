@@ -43,9 +43,9 @@ The integration requires Unity `2021.3` or newer.
 
 ## Dependencies
 
-- `com.deucarian.object-selection` supplies the world-object selection service.
-- `com.deucarian.core-state` supplies the repository and data-selection contracts.
-- `com.deucarian.logging` supplies runtime diagnostics for integration and sample categories.
+- `com.deucarian.object-selection` `1.0.3` supplies the world-object selection service.
+- `com.deucarian.core-state` `1.0.1` supplies the repository and data-selection contracts.
+- `com.deucarian.logging` `1.0.1` supplies runtime diagnostics for integration and sample categories.
 
 Neither Object Selection nor Core State depends on this integration package.
 
