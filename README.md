@@ -133,3 +133,9 @@ powershell -ExecutionPolicy Bypass -File ./Tools/Validate-Package.ps1
 ```
 
 For Unity validation, use a separate test project that references this package and its dependencies by file path, then run EditMode tests for `Deucarian.ObjectSelection.CoreStateIntegration.Tests`.
+
+## Architecture / Contributor Notes
+
+- [AGENTS.md](AGENTS.md) contains repository-specific ownership and Codex guidance.
+- Deucarian architecture rules live in [Package Registry](https://github.com/Deucarian/Package-Registry/blob/develop/ARCHITECTURE.md).
+- Capability ownership is tracked in [CAPABILITY_OWNERSHIP.md](https://github.com/Deucarian/Package-Registry/blob/develop/CAPABILITY_OWNERSHIP.md).
