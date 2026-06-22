@@ -11,7 +11,7 @@ ObjectSelection owns world-object selection. CoreState owns data/application sel
 
 Package ID: `com.deucarian.object-selection.core-state-integration`
 
-Migration note: replace old manifest entries for `com.deucarian.object-selection.core-state-bridge` with `com.deucarian.object-selection.core-state-integration`. The source repository URL still uses `Object-Selection-Bridge.git` until the GitHub repository is renamed.
+Migration note: replace old manifest entries for `com.deucarian.object-selection.core-state-bridge` with `com.deucarian.object-selection.core-state-integration`. Current installs use the `ObjectSelection-CoreState-Integration.git` repository.
 
 ## Installation
 
@@ -22,7 +22,7 @@ Install the dependencies and this integration through Unity Package Manager:
   "dependencies": {
     "com.deucarian.object-selection": "https://github.com/Deucarian/Object-Selection.git#main",
     "com.deucarian.core-state": "https://github.com/Deucarian/Core-State.git#main",
-    "com.deucarian.object-selection.core-state-integration": "https://github.com/Deucarian/Object-Selection-Bridge.git#main"
+    "com.deucarian.object-selection.core-state-integration": "https://github.com/Deucarian/ObjectSelection-CoreState-Integration.git#main"
   }
 }
 ```
@@ -39,7 +39,15 @@ For local development:
 }
 ```
 
-The integration requires Unity `2021.3` or newer and depends on `com.deucarian.logging`.
+The integration requires Unity `2021.3` or newer.
+
+## Dependencies
+
+- `com.deucarian.object-selection` supplies the world-object selection service.
+- `com.deucarian.core-state` supplies the repository and data-selection contracts.
+- `com.deucarian.logging` supplies runtime diagnostics for integration and sample categories.
+
+Neither Object Selection nor Core State depends on this integration package.
 
 ## Logging
 
