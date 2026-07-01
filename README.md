@@ -1,30 +1,42 @@
-# Deucarian ObjectSelection CoreState Integration
+# Deucarian Object Selection Core State Integration
 
-## Overview
+## What this is
 
-Deucarian ObjectSelection CoreState Integration is a standalone Unity package that synchronizes keyed selection between:
+`com.deucarian.object-selection.core-state-integration` is a standalone Unity package that synchronizes keyed selection between:
 
 - `Deucarian Object Selection`
 - `Deucarian Core State`
 
 ObjectSelection owns world-object selection. CoreState owns data/application selection. This integration only synchronizes shared keys.
 
-Package ID: `com.deucarian.object-selection.core-state-integration`
+Current package version: `1.0.3`.
+
+## When to use it
+
+- Your project already uses Object Selection and Core State.
+- You want world-object selection and repository/data selection synchronized by shared key.
+- You want bidirectional sync without making either target package depend on the other.
+
+## When not to use it
+
+- Do not use this package without both target packages installed.
+- Do not put object selection ownership, repository ownership, UI binding, persistence, networking, API/session behavior, or service location here.
+- Do not add app-specific selection visuals to this integration package.
 
 Migration note: replace old manifest entries for `com.deucarian.object-selection.core-state-bridge` with `com.deucarian.object-selection.core-state-integration`. Current installs use the `ObjectSelection-CoreState-Integration.git` repository.
 
-## Installation
+## Install
 
-Install the dependencies and this integration through Unity Package Manager:
+Stable:
 
 ```json
-{
-  "dependencies": {
-    "com.deucarian.object-selection": "https://github.com/Deucarian/Object-Selection.git#main",
-    "com.deucarian.core-state": "https://github.com/Deucarian/Core-State.git#main",
-    "com.deucarian.object-selection.core-state-integration": "https://github.com/Deucarian/ObjectSelection-CoreState-Integration.git#main"
-  }
-}
+"com.deucarian.object-selection.core-state-integration": "https://github.com/Deucarian/ObjectSelection-CoreState-Integration.git#main"
+```
+
+Development:
+
+```json
+"com.deucarian.object-selection.core-state-integration": "https://github.com/Deucarian/ObjectSelection-CoreState-Integration.git#develop"
 ```
 
 For local development:
@@ -32,14 +44,12 @@ For local development:
 ```json
 {
   "dependencies": {
-    "com.deucarian.object-selection": "file:C:/Repositories/ObjectSelection",
+    "com.deucarian.object-selection": "file:C:/Repositories/Object-Selection",
     "com.deucarian.core-state": "file:C:/Repositories/Core-State",
-    "com.deucarian.object-selection.core-state-integration": "file:C:/Repositories/Deucarian.ObjectSelection-CoreState-Integration"
+    "com.deucarian.object-selection.core-state-integration": "file:C:/Repositories/ObjectSelection-CoreState-Integration"
   }
 }
 ```
-
-The integration requires Unity `2021.3` or newer.
 
 ## Dependencies
 
@@ -48,6 +58,10 @@ The integration requires Unity `2021.3` or newer.
 - `com.deucarian.logging` `1.0.1` supplies runtime diagnostics for integration and sample categories.
 
 Neither Object Selection nor Core State depends on this integration package.
+
+## Unity compatibility
+
+Requires Unity 2021.3 or newer.
 
 ## Logging
 
@@ -126,16 +140,39 @@ Click a primitive to select it through ObjectSelection and watch CoreState selec
 
 ## Validation
 
-Run structural validation from the package root:
+Run the shared package validator from the repository root:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File ./Tools/Validate-Package.ps1
+python C:/Repositories/Package-Registry/Tools/deucarian_package_validator.py --registry-root C:/Repositories/Package-Registry --repository-root . --config deucarian-package.json
 ```
 
 For Unity validation, use a separate test project that references this package and its dependencies by file path, then run EditMode tests for `Deucarian.ObjectSelection.CoreStateIntegration.Tests`.
+
+Documentation-only updates should still pass:
+
+```powershell
+git diff --check
+```
 
 ## Architecture / Contributor Notes
 
 - [AGENTS.md](AGENTS.md) contains repository-specific ownership and Codex guidance.
 - Deucarian architecture rules live in [Package Registry](https://github.com/Deucarian/Package-Registry/blob/develop/ARCHITECTURE.md).
 - Capability ownership is tracked in [CAPABILITY_OWNERSHIP.md](https://github.com/Deucarian/Package-Registry/blob/develop/CAPABILITY_OWNERSHIP.md).
+
+## License
+
+See [LICENSE.md](LICENSE.md).
+
+## Quick Start
+
+1. Install the package through Deucarian Package Installer or Unity Package Manager using the URL above.
+2. Let Unity finish resolving packages and compiling assemblies.
+3. Import the `Core State Integration Sample` sample if you want a working reference scene or setup.
+4. Start from the package README sections above and the public runtime/editor APIs in this repository.
+
+## Troubleshooting
+
+- Package does not resolve: confirm the stable or development Git URL matches the Package Registry entry and that required Deucarian dependencies are installed.
+- Unity compile errors after install: let Package Manager finish resolving dependencies, then check asmdef references against `package.json` dependencies.
+- Behavior appears to belong in another package: consult `AGENTS.md` and the Package Registry governance docs before moving or duplicating code.
